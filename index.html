@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <head>
     <title>Graeme Diacks Github Website!</title>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
     <h1>Hello World!</h1>
+    <div id='map' style='width: 400px; height: 300px;'></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhZW1lZGlhY2siLCJhIjoiY2s5bHF2ZG5kMDB2MTNmbW9obnI5cDg0bCJ9.P-liw9lCGKDS9uGwjD_4ug';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11'
+        });
+    </script>
 </body>
 </html>
