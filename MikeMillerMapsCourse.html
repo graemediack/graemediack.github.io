@@ -43,6 +43,17 @@
     </style>
 </head>
 <body>
+    <div id="header" class="col-md-12">
+        <h1 class="text-center">Mexico City</h1>
+    </div>
+    <div id="side-panel" class="col-md-3">
+        <h1 class="text-center">Attractions</h1>
+    </div>
+    <div id="mapdiv" class="col-md-9"></div>
+    <div id="footer" class="col-md-12">
+        <h4 id="map_coords" class="text-center">Latitude: 19.4 Longitude: -99.1 Zoom: 11</h4>
+        <h4 class="text-center">&copy;2016 <a href="http://millermountain.com">Miller Mountain LLC</a></h4>
+    </div>
     <script>
         var mymap = L.map('mapdiv')
         mymap.setView([19.4, -99.1], 11);
