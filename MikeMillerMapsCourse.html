@@ -60,6 +60,12 @@
     
         var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
         mymap.addLayer(backgroundLayer);
+        
+        var zocaloMarker = L.marker([19.43278,-99.13333]);
+        zocaloMarker.addTo(mymap);
+        zocaloMarker.bindPopup("<h3 class='text-center'>Zocalo</h3><hr><a href='https://en.wikipedia.org/wiki/Z%C3%B3calo' target='_blank'><img src='img/portada.jpg' width='200px'></a>");
+        
     </script>
+    
 </body>
 </html>
