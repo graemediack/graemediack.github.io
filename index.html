@@ -76,19 +76,16 @@
         var geojsonLayer = new L.GeoJSON.AJAX('data/MSS_ObsLocations.geojson', {pointToLayer:
         function(feature, latlng) {
             // create buttons from geoJSON data
-            var str = "<button id='zoomTo"+feature.properties.site.replace(/ /g, '');
+            var str = "<button id='zoomTo"+feature.properties.Site.replace(/ /g, '');
             str += "' class='form-control btn btn-primary attraction'>";
-            str += feature.properties.site+"</button>";
+            str += feature.properties.Site+"</button>";
             $("#side_panel").append(str);
 
-            $("#zoomTo"+feature.properties.site.replace(/ /g, '')).click(function() {
+            $("#zoomTo"+feature.properties.Site.replace(/ /g, '')).click(function() {
                 mymap.setView([latlng.lat, latlng.lng], 17);
             });
             // create markers from geoJSON data
-            var str = "<h4>"+feature.properties.site+"</h4><hr>";
-            str += "<a href='https:\/\/data.marine.gov.scot\/dataset\/scottish-coastal-observatory-data' target='_blank'>";
-            str += "<img src='img/gov.scot.logo.png' width='200px'>";
-            str += "</a>";
+            var str = "<h4>"+feature.properties.Site+"</h4>";
             return L.marker(latlng).bindPopup(str);
         }});
         geojsonLayer.addTo(mymap);
