@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>lazygrae messing about</title>
+    <title>MillerMapsTutorial</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
@@ -51,43 +51,43 @@
 
 <body>
     <div id="header" class="col-md-12">
-        <h1 class="text-center">Marine Science Scotland Observation Locations</h1>
+        <h1 class="text-center">Mexico City</h1>
     </div>
     <div id="side_panel" class="col-md-3">
-        <h1 class="text-center">Observation Locations</h1>
+        <h1 class="text-center">Attractions</h1>
         <button id="btnBuffer" class="form-control btn-warning attraction">Buffer</button>
         <button id="btnVoronoi" class="form-control btn-warning attraction">Voronoi</button>
     </div>
     <div id="mapdiv" class="col-md-9"></div>
     <div id="footer" class="col-md-12">
-        <h4 id="map_coords" class="text-center">Latitude: 55.0 Longitude: 4.0 Zoom: 11</h4>
-        <h4 class="text-center">Thanks to <a href="http://millermountain.com" target='_blank'>Miller Mountain LLC</a> for GIS and Web courses!</h4>
+        <h4 id="map_coords" class="text-center">Latitude: 19.4 Longitude: -99.1 Zoom: 11</h4>
+        <h4 class="text-center">&copy;2016 <a href="http://millermountain.com">Miller Mountain LLC</a></h4>
     </div>
     <script>
         // add map object to mapdiv
         var mymap = L.map('mapdiv')
-        mymap.setView([55, 4], 11);
+        mymap.setView([19.4, -99.1], 11);
         // add background layer
         var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
         mymap.addLayer(backgroundLayer);
 
         // import layer data from geoJSON file
                        
-        var geojsonLayer = new L.GeoJSON.AJAX('data/MSS_ObsLocations.geojson', {pointToLayer:
+        var geojsonLayer = new L.GeoJSON.AJAX('data/attractions.geojson', {pointToLayer:
         function(feature, latlng) {
             // create buttons from geoJSON data
-            var str = "<button id='zoomTo"+feature.properties.site.replace(/ /g, '');
+            var str = "<button id='zoomTo"+feature.properties.name.replace(/ /g, '');
             str += "' class='form-control btn btn-primary attraction'>";
-            str += feature.properties.site+"</button>";
+            str += feature.properties.name+"</button>";
             $("#side_panel").append(str);
 
-            $("#zoomTo"+feature.properties.site.replace(/ /g, '')).click(function() {
+            $("#zoomTo"+feature.properties.name.replace(/ /g, '')).click(function() {
                 mymap.setView([latlng.lat, latlng.lng], 17);
             });
             // create markers from geoJSON data
-            var str = "<h4>"+feature.properties.site+"</h4><hr>";
-            str += "<a href='https://data.marine.gov.scot/dataset/scottish-coastal-observatory-data' target='_blank'>";
-            str += "<img src='img/gov.scot.logo.png' width='200px'>";
+            var str = "<h4>"+feature.properties.name+"</h4><hr>";
+            str += "<a href'"+feature.properties.web+"' target='_blank'>";
+            str += "<img src='img/"+feature.properties.image+"' width='200px'>";
             str += "</a>";
             return L.marker(latlng).bindPopup(str);
         }});
