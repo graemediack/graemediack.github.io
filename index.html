@@ -60,13 +60,13 @@
     </div>
     <div id="mapdiv" class="col-md-9"></div>
     <div id="footer" class="col-md-12">
-        <h4 id="map_coords" class="text-center">Latitude: 55.0 Longitude: 4.0 Zoom: 11</h4>
+        <h4 id="map_coords" class="text-center">Latitude: 56.0 Longitude: -4.0 Zoom: 11</h4>
         <h4 class="text-center">Thanks to <a href="http://millermountain.com" target='_blank'>Miller Mountain LLC</a> for GIS and Web courses!</h4>
     </div>
     <script>
         // add map object to mapdiv
         var mymap = L.map('mapdiv')
-        mymap.setView([55, 4], 11);
+        mymap.setView([56, -4], 11);
         // add background layer
         var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
         mymap.addLayer(backgroundLayer);
@@ -86,7 +86,7 @@
             });
             // create markers from geoJSON data
             var str = "<h4>"+feature.properties.site+"</h4><hr>";
-            str += "<a href='https://data.marine.gov.scot/dataset/scottish-coastal-observatory-data' target='_blank'>";
+            str += "<a href='https:\/\/data.marine.gov.scot\/dataset\/scottish-coastal-observatory-data' target='_blank'>";
             str += "<img src='img/gov.scot.logo.png' width='200px'>";
             str += "</a>";
             return L.marker(latlng).bindPopup(str);
