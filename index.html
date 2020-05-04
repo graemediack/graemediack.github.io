@@ -41,6 +41,9 @@
             background-color: darkgrey;
         }
 
+        .attraction {
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 
@@ -58,17 +61,27 @@
         <h4 class="text-center">&copy;2016 <a href="http://millermountain.com">Miller Mountain LLC</a></h4>
     </div>
     <script>
-        <!-- add map object to mapdiv-->
+        // add map object to mapdiv
         var mymap = L.map('mapdiv')
         mymap.setView([19.4, -99.1], 11);
-        <!-- add background layer -->
+        // add background layer
         var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
-        mymap.addLayer(backgroundLayer
-                       
-        <!-- import layer data from geoJSON file -->
+        mymap.addLayer(backgroundLayer);
+
+        // import layer data from geoJSON file
                        
         var geojsonLayer = new L.GeoJSON.AJAX('data/attractions.geojson', {pointToLayer:
-        function(feature, latlng){
+        function(feature, latlng) {
+            // create buttons from geoJSON data
+            var str = "<button id='zoomTo"+feature.properties.name.replace(/ /g, '');
+            str += "' class='form-control btn btn-primary attraction'>";
+            str += feature.properties.name+"</button>";
+            $("#side_panel").append(str);
+
+            $("#zoomTo"+feature.properties.name.replace(/ /g, '')).click(function() {
+                mymap.setView([latlng.lat, latlng.lng], 17);
+            });
+            // create markers from geoJSON data
             var str = "<h4>"+feature.properties.name+"</h4><hr>";
             str += "<a href'"+feature.properties.web+"' target='_blank'>";
             str += "<img src='img/"+feature.properties.image+"' width='200px'>";
@@ -77,10 +90,7 @@
         }});
         geojsonLayer.addTo(mymap);
         
-        <!-- create buttons from geoJSON data -->
-        $("#zoomToZocalo").click(function() {
-            mymap.setView([19.43278, -99.13333], 17);
-        });
+        
 
         mymap.on('mousemove', function(e){
             var str = "Latitude: "+e.latlng.lat.toFixed(5)+" Longitude: "+e.latlng.lng.toFixed(5)+" Zoom Level: "+mymap.getZoom();
