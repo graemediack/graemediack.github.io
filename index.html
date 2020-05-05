@@ -91,8 +91,8 @@
         geojsonLayer.addTo(mymap);
         
         var bufferLayer;
-        $("btnBuffer").click(function() {
-            if ($("btnBuffer").html()=='Buffer') {
+        $("#btnBuffer").click(function() {
+            if ($("#btnBuffer").html()=='Buffer') {
                 var bufferedAttractions = turf.buffer(geojsonLayer.toGeoJSON(), 1, 'miles');
                 bufferLayer = L.GeoJSON(bufferedAttractions).addTo(mymap);
                 $("#btnBuffer").html("Remove Buffer");
