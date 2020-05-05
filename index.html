@@ -92,7 +92,7 @@
 
         // buffer experiment
         var point1 = turf.point([57, -5]);
-        var bufferedLocations1 = turf.buffer(point1, 15);
+        var bufferedLocations1 = turf.buffer(point1, 15, {units: 'miles'});
         bufferedLocations1.addTo(mymap);
 
         var point2 = turf.point([56, -5]);
