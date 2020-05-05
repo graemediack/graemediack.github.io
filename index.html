@@ -60,13 +60,13 @@
     </div>
     <div id="mapdiv" class="col-md-9"></div>
     <div id="footer" class="col-md-12">
-        <h4 id="map_coords" class="text-center">Latitude: 56.0 Longitude: -4.0 Zoom: 11</h4>
+        <h4 id="map_coords" class="text-center">Latitude: 57.0 Longitude: -5.0 Zoom: 6</h4>
         <h4 class="text-center">Thanks to <a href="http://millermountain.com" target='_blank'>Miller Mountain LLC</a> for GIS and Web courses!</h4>
     </div>
     <script>
         // add map object to mapdiv
         var mymap = L.map('mapdiv')
-        mymap.setView([56, -4], 11);
+        mymap.setView([57, -5], 6);
         // add background layer
         var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
         mymap.addLayer(backgroundLayer);
@@ -90,6 +90,10 @@
         }});
         geojsonLayer.addTo(mymap);
         
+        var bufferedLocations = turf.buffer(geojsonLayer.toGeoJSON(), 15);
+        bufferedLocations.addTo(mymap);
+
+        /*
         var bufferLayer;
         $("#btnBuffer").click(function() {
             if ($("#btnBuffer").html()=='Buffer') {
@@ -101,7 +105,7 @@
                 $("#btnBuffer").html("Buffer");
             }
         });
-        
+        */
 
         mymap.on('mousemove', function(e){
             var str = "Latitude: "+e.latlng.lat.toFixed(5)+" Longitude: "+e.latlng.lng.toFixed(5)+" Zoom Level: "+mymap.getZoom();
