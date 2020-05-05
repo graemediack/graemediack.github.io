@@ -55,8 +55,7 @@
     </div>
     <div id="side_panel" class="col-md-3">
         <h1 class="text-center">Observation Locations</h1>
-        <button id="btnBuffer" class="form-control btn-warning attraction">Buffer</button>
-        <button id="btnVoronoi" class="form-control btn-warning attraction">Voronoi</button>
+        <button id="btnBuffer" class="form-control btn btn-warning attraction"></button>
     </div>
     <div id="mapdiv" class="col-md-9"></div>
     <div id="footer" class="col-md-12">
@@ -90,6 +89,18 @@
         }});
 
         geojsonLayer.addTo(mymap);
+
+        var bufferLayer;
+        $("#btnBuffer").click(function() {
+            if ($("#btnBuffer").html()=="Buffer") {
+                var bufferedMarkers = turf.buffer(geojsonLayer.toGeoJSON(), 1, {units: 'miles'});
+                bufferLayer = L.GeoJSON(bufferedMarkers).addTo(mymap);
+                $("#btnBuffer").html("Remove Buffer");
+            } else {
+                mymap.removeLayer(bufferLayer);
+                $("#btnBuffer").html("Buffer");
+            }
+        });
 
         mymap.on('mousemove', function(e){
             var str = "Latitude: "+e.latlng.lat.toFixed(5)+" Longitude: "+e.latlng.lng.toFixed(5)+" Zoom Level: "+mymap.getZoom();
