@@ -71,10 +71,6 @@
         var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
         mymap.addLayer(backgroundLayer);
 
-        // buffer experiment
-        var point1 = turf.point([57, -5]);
-        point1.addTo(mymap);
-
         // import layer data from geoJSON file
                        
         var geojsonLayer = new L.GeoJSON.AJAX('data/MSS_ObsLocations.geojson', {pointToLayer:
