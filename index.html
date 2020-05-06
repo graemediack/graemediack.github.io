@@ -55,7 +55,6 @@
     </div>
     <div id="side_panel" class="col-md-3">
         <h1 class="text-center">Observation Locations</h1>
-        <button id="btnBuffer" class="form-control btn btn-warning attraction">Buffer</button>
     </div>
     <div id="mapdiv" class="col-md-9"></div>
     <div id="footer" class="col-md-12">
@@ -69,43 +68,20 @@
         // add background layer
         var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
         mymap.addLayer(backgroundLayer);
-
-        // import layer data from geoJSON file
-                       
-        var geojsonLayer = new L.GeoJSON.AJAX('data/MSS_ObsLocations.geojson', {pointToLayer:
-            function(feature, latlng) {
-                // create buttons from geoJSON data
-                var str = "<button id='zoomTo"+feature.properties.Site.replace(/ /g, '');
-                str += "' class='form-control btn btn-primary attraction'>";
-                str += feature.properties.Site+"</button>";
-                $("#side_panel").append(str);
-                //button event handler
-                $("#zoomTo"+feature.properties.Site.replace(/ /g, '')).click(function() {
-                    mymap.setView([latlng.lat, latlng.lng], 10);
-                });
-                // create markers from geoJSON data
-                var str = "<h4>"+feature.properties.Site+"</h4>";
-                return L.marker(latlng).bindPopup(str);
-                }
-            }
-        );
-
-        geojsonLayer.addTo(mymap);
+        //define some scotland centric geojson
+        var pt = {
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [57, -5]
+            },
+            properties: {}
+        };
+        //
+        var buffered = turf.buffer(pt, 10, 'miles');
+        L.geoJson(buffered).addTo(mymap);
+        mymap.addLayer(point);
         
-        var geojsonLayer = new L.GeoJSON.AJAX('data/attractions.geojson');
-        var bufferLayer;
-        $("#btnBuffer").click(function() {
-            if ($("#btnBuffer").html()=="Buffer") {
-                var bufferedMarkers = turf.buffer(geojsonLayer.toGeoJSON(), 20, {units: 'miles'});
-                bufferLayer = L.GeoJSON(bufferedMarkers);
-                mymap.addLayer(bufferLayer);
-                $("#btnBuffer").html("Remove Buffer");
-            } else {
-                mymap.removeLayer(bufferLayer);
-                $("#btnBuffer").html("Buffer");
-            }
-        });
-
         mymap.on('mousemove', function(e){
             var str = "Latitude: "+e.latlng.lat.toFixed(5)+" Longitude: "+e.latlng.lng.toFixed(5)+" Zoom Level: "+mymap.getZoom();
             $("#map_coords").html(str);
