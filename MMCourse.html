@@ -96,8 +96,8 @@
         var bufferLayer;
         $("#btnBuffer").click(function() {
             if ($("#btnBuffer").html()=='Buffer') {
-                var bufferedAttractions = turf.buffer(geojsonLayer.toGeoJSON(), 20, 'kilometres');
-                bufferLayer = L.GeoJSON.AJAX(bufferedAttractions);
+                var bufferedAttractions = turf.buffer('data/attractions.geojson', 20, 'kilometres');
+                bufferLayer = new L.GeoJSON(bufferedAttractions);
                 mymap.addLayer(bufferLayer);
                 $("#btnBuffer").html("Remove Buffer");
             } else {
@@ -105,6 +105,8 @@
                 $("#btnBuffer").html("Buffer");
             }
         });
+        
+        
         
 
         mymap.on('mousemove', function(e){
