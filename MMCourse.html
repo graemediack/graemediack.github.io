@@ -4,19 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>MillerMapsTutorial</title>
-    
-    <!-- MM Course Verbatim css and js -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css">
-    <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="resources/leaflet.ajax.js"></script>
-    <script src="resources/turf.min.js"></script> -->
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
-    
+    <link rel="stylesheet" href="resources/local.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
@@ -24,45 +16,18 @@
     <script src="resources/leaflet.ajax.min.js"></script>
     <script src='https://unpkg.com/@turf/turf/turf.min.js'></script>
 
-    <style>
-        #header {
-            height: 75px;
-            background-color: darkgoldenrod;
-        }
-
-        #mapdiv {
-            height: 850px;
-            background-color: salmon;
-        }
-
-        #side_panel {
-            height: 850px;
-            background-color: beige;
-        }
-
-        #footer {
-            height: 75px;
-            background-color: darkgrey;
-        }
-
-        .attraction {
-            margin-bottom: 5px;
-        }
-    </style>
 </head>
 
 <body>
-    <div id="header" class="col-md-12">
-        <h1 class="text-center">Mexico City</h1>
-    </div>
+    <script language="javascript" type="text/javascript" src="resources/header.txt"></script>
     <div id="side_panel" class="col-md-3">
-        <h1 class="text-center">Attractions</h1>
+        <p class="text-left">Mike Miller Web GIS Course</p>
+        <p class="text-left" style="font-size: 16px">Mexico City Attractions</p>
         <button id="btnBuffer" class="form-control btn-warning attraction">Buffer</button>
     </div>
     <div id="mapdiv" class="col-md-9"></div>
     <div id="footer" class="col-md-12">
-        <h4 id="map_coords" class="text-center">Latitude: 19.4 Longitude: -99.1 Zoom: 11</h4>
-        <h4 class="text-center">&copy;2016 <a href="http://millermountain.com">Miller Mountain LLC</a></h4>
+        <p class="text-center">&copy;2016 <a href="http://millermountain.com">Miller Mountain LLC</a></p>
     </div>
     <script>
         // add map object to mapdiv
@@ -111,6 +76,27 @@
             var str = "Latitude: "+e.latlng.lat.toFixed(5)+" Longitude: "+e.latlng.lng.toFixed(5)+" Zoom Level: "+mymap.getZoom();
             $("#map_coords").html(str);
         });
+        
+        L.Control.Watermark = L.Control.extend({
+            onAdd: function(map) {
+                var img = L.DomUtil.create('img');
+
+                img.src = 'img/partner_logos.png';
+                img.style.width = '300px';
+
+                return img;
+            },
+
+            onRemove: function(map) {
+                // Nothing to do here
+                }
+            });
+
+            L.control.watermark = function(opts) {
+                return new L.Control.Watermark(opts);
+            }
+
+            L.control.watermark({ position: 'bottomleft' }).addTo(mymap);
     </script>
 
 </body>

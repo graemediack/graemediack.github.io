@@ -1,0 +1,20 @@
+<style>
+    #header {
+        height: 5vh;
+        background-color: whitesmoke;
+    }
+    #mapdiv {
+        height: 90vh;
+        background-color: salmon;
+    }
+    #side_panel {
+        height: 90vh;
+        background-color: beige;
+        font-size: 20px;
+    }
+    #footer {
+        height: 5vh;
+        background-color: darkgrey;
+    }
+    .attraction {margin-bottom: 5px;}
+</style>

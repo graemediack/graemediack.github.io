@@ -1,0 +1,1 @@
+document.write('<div id="header" class="col-md-12"><a href="./index.html" class="btn btn-secondary" role="button">Home</a><a href="./MMCourse.html" class="btn btn-secondary" role="button">MM Course Map</a></div>')
