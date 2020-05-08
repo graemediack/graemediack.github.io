@@ -1,0 +1,39 @@
+/*
+        var linesGeoJSON = {
+            "type": "FeatureCollection",
+            "name": "ObservationInstrumentLocations",
+            "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+            "features": [
+                {"type": "Feature","properties": {"name": "Line 1"},"geometry": {"type": "LineString","coordinates": [[-99.1, 19.4], [-99.2, 19.4], [-99.3, 19.4]]}},
+                {"type": "Feature","properties": {"name": "Line 2"},"geometry": {"type": "LineString","coordinates": [[-99.1, 19.5], [-99.2, 19.5], [-99.3, 19.5]]}}
+            ]
+        };
+        
+        L.geoJSON(turf.buffer(linesGeoJSON,1)).addTo(mymap);
+
+        var bufferLinesLayer;
+        */
+        var bufferAttLayer;
+        $("#btnBuffer").click(function(){
+            if ($("#btnBuffer").html()=='Buffer') {
+                
+                // var bufferedLines = turf.buffer(linesGeoJSON, 2);
+                // bufferLinesLayer = L.geoJSON(bufferedLines);
+                
+                var bufferedAtt = turf.buffer(geojsonLayer.toGeoJSON(), 2);
+                bufferAttLayer = L.geoJSON(bufferedAtt);
+                
+                // mymap.addLayer(bufferLinesLayer);
+                mymap.addLayer(bufferAttLayer);
+                
+                $("#btnBuffer").html("Remove Buffer");
+                
+            } else {
+                
+                // mymap.removeLayer(bufferLinesLayer);
+                mymap.removeLayer(bufferAttLayer);
+                
+                $("#btnBuffer").html("Buffer");
+                
+            };
+        });
