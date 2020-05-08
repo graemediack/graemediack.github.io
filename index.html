@@ -4,42 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <title>lazygrae messing about</title>
+    
+    <!-- MM Course Verbatim css and js
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="resources/leaflet.ajax.js"></script>
+    <script src="resources/turf.min.js"></script> -->
+    
+    
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <!-- 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-     -->
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
     <script src="resources/leaflet.ajax.min.js"></script>
-
     <script src="resources/turf.min.js"></script>
     
     <style>
         #header {
-            height: 10%;
-            background-color: rgb(69, 234, 240);
+            height: 75px;
+            background-color: darkgoldenrod;
         }
 
         #mapdiv {
-            height: 80%;
+            height: 850px;
             background-color: salmon;
         }
 
         #side_panel {
-            height: 80%;
+            height: 850px;
             background-color: beige;
         }
 
         #footer {
-            height: 10%;
+            height: 75px;
             background-color: darkgrey;
         }
 
@@ -53,11 +57,23 @@
         <div id="header" class="col-md-12">
             <h1 class="text-center">LazyGrae Map Learning</h1>
         </div>
-        <div id="side_panel" class="col-md-1">
-            <h1 class="text-center">Observation Locations</h1>
+        <div id="side_panel" class="col-md-3">
+            <h1 class="text-center">Points of Interest</h1>
             <button id="btnBuffer" class="form-control btn btn-warning attraction">Buffer</button>
+            <button id="btnVoronoi" class="form-control btn btn-warning attraction">Voronoi</button>
+            <button id="btnTin" class="form-control btn btn-warning attraction">Tin</button>
+            
+            <select id="selectMSSObsCat" class="custom-select attraction">
+                <option selected>Select a Location Category:</option>
+                <option value="Coastal Observatory Sites">Coastal Observatory Sites</option>
+                <option value="West Coast Rivers">West Coast Rivers</option>
+                <option value="East Coast Rivers">East Coast Rivers</option>
+                <option value="Scottish Sea Areas">Scottish Sea Areas</option>
+                <option value="Met Stations">Met Stations</option>
+            </select>
+            
         </div>
-        <div id="mapdiv" class="col-md-11"></div>
+        <div id="mapdiv" class="col-md-9"></div>
         <div id="footer" class="col-md-12">
             <h4 id="map_coords" class="text-center">Latitude: 57.0 Longitude: -5.0 Zoom: 6</h4>
             <h4 class="text-center">Thanks to <a href="http://millermountain.com" target='_blank'>Miller Mountain LLC</a> for GIS and Web courses!</h4>
@@ -69,8 +85,8 @@
             // add background layer
             var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
             mymap.addLayer(backgroundLayer);
-            
-            var geojsonMarkerOptions = {
+            // add all observation locations as little orange dots
+            var MSS_ObsLocLayerMarkerOptions = {
                 radius: 3,
                 fillColor: "#ff7800",
                 color: "#000",
@@ -79,27 +95,71 @@
                 fillOpacity: 0.8
             };
 
-            var geojsonLayer = new L.GeoJSON.AJAX('data/MSS_ObsLocations.geojson', {       pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng, geojsonMarkerOptions);
+            var MSS_ObsLocLayer = new L.GeoJSON.AJAX('data/MSS_ObsLocations.geojson', {pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, MSS_ObsLocLayerMarkerOptions);
                 }
             }).addTo(mymap);
-            var bufferedMarkers = turf.buffer(geojsonLayer.toGeoJSON(), 50, {units: 'miles'});
-            bufferLayer = L.GeoJSON(bufferedMarkers);
-            mymap.addLayer(bufferLayer);
             
-            var nullIsland = {
-                type: 'Feature',
-                geometry: {
-                    type: 'Point',
-                    coordinates: [0, 0]
-                },
-                properties: {
-                    name: 'Null Island'
+            // add and remove buffer to all objects using buffer button
+            var bufferLayer = L.geoJSON();
+            $("#btnBuffer").click(function(){
+                
+                if ($("#btnBuffer").html()=='Buffer') {
+                    var bufferedLocations = turf.buffer(MSS_ObsLocLayer.toGeoJSON(), 15, {units:'kilometres'});
+                    bufferLayer = L.geoJSON(bufferedLocations).addTo(mymap);
+                    $("#btnBuffer").html("Remove Buffer");
+                } else {
+                    mymap.removeLayer(bufferLayer);
+                    $("#btnBuffer").html("Buffer");
+                }
+            });
+            
+            var voronoiLayer = L.geoJSON();
+            $("#btnVoronoi").click(function(){
+                
+                if ($("#btnVoronoi").html()=='Voronoi') {
+                    var voronoiLocations = turf.voronoi(MSS_ObsLocLayer.toGeoJSON());
+                    voronoiLayer = L.geoJSON(voronoiLocations).addTo(mymap);
+                    $("#btnVoronoi").html("Remove Voronoi");
+                } else {
+                    mymap.removeLayer(voronoiLayer);
+                    $("#btnVoronoi").html("Voronoi");
+                }
+            });
+            
+            var tinLayer = L.geoJSON();
+            $("#btnTin").click(function(){
+                
+                if ($("#btnTin").html()=='Tin') {
+                    var tinLocations = turf.tin(MSS_ObsLocLayer.toGeoJSON());
+                    tinLayer = L.geoJSON(tinLocations).addTo(mymap);
+                    $("#btnTin").html("Remove Tin");
+                } else {
+                    mymap.removeLayer(tinLayer);
+                    $("#btnTin").html("Tin");
+                }
+            });
+            
+            
+            // highlight particular categories using drop down and view button
+            var categorySelect = L.geoJSON();
+            $("#selectMSSObsCat").click(function(){
+                mymap.removeLayer(categorySelect);
+                categorySelect = new L.GeoJSON.AJAX('data/MSS_ObsLocations.geojson', {filter: locationCatFilter}).addTo(mymap);
+            });
+            
+            function locationCatFilter(feature) {
+                if (feature.properties.Category == $("#selectMSSObsCat").val()) {
+                    return true;
                 } 
             };
-
-            var twoHundredMilesOut = turf.buffer(nullIsland, 200, { unit: 'miles' });
-            mymap.addLayer(twoHundredMilesOut);
+            
+            
+            mymap.on('mousemove', function(e){
+                var str = "Latitude: "+e.latlng.lat.toFixed(5)+" Longitude: "+e.latlng.lng.toFixed(5)+" Zoom Level: "+mymap.getZoom();
+                $("#map_coords").html(str);
+            });
+            
         </script>
     </body>
 </html>
