@@ -4,20 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>lazygrae messing about</title>
-    
-    <!-- Latest compiled and minified CSS -->
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="resources/local.css">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
-    <script src="resources/leaflet.ajax.min.js"></script>
-    <script src="resources/turf.min.js"></script>
+    <script language="javascript" type="text/javascript" src="resources/cssImport.txt"></script>
+    <script language="javascript" type="text/javascript" src="resources/jsImport.txt"></script>
 </head>
     <body>
         <script language="javascript" type="text/javascript" src="resources/header.txt"></script>
@@ -38,10 +26,7 @@
             
         </div>
         <div id="mapdiv" class="col-md-9"></div>
-        <div id="footer" class="col-md-12">
-            <p id="map_coords" class="text-center">Latitude: 57.0 Longitude: -5.0 Zoom: 6</p>
-            <p class="text-center">Thanks to <a href="http://millermountain.com" target='_blank'>Miller Mountain LLC</a> for GIS and Web courses!</p>
-        </div>
+        <script language="javascript" type="text/javascript" src="resources/footer.txt"></script>
         <script>
             // add map object to mapdiv
             var mymap = L.map('mapdiv')
@@ -125,5 +110,6 @@
             });
             
         </script>
+        <script src="resources/watermark.js"></script>
     </body>
 </html>

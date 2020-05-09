@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multimap</title>
+    <script language="javascript" type="text/javascript" src="resources/cssImport.txt"></script>
+    <script language="javascript" type="text/javascript" src="resources/jsImport.txt"></script>
+</head>
+<body>
+    <script language="javascript" type="text/javascript" src="resources/header.txt"></script>
+    <div class="col-md-2" style="44vh"></div>
+    <div id="maptl" class="col-md-4 well" style="height: 42vh"></div>
+    <div class="col-md-1" style="44vh"></div>
+    <div id="maptr" class="col-md-4 well" style="height: 42vh"></div>
+    <div class="col-md-1" style="44vh"></div>
+    <div class="col-md-2" style="44vh"></div>
+    <div id="mapbl" class="col-md-4 well" style="height: 42vh"></div>
+    <div class="col-md-1" style="44vh"></div>
+    <div id="mapbr" class="col-md-4 well" style="height: 42vh"></div>
+    <div class="col-md-1" style="44vh"></div>
+    <script language="javascript" type="text/javascript" src="resources/footer.txt"></script>
+    <script>
+        // add map object to mapdiv
+        var mymap = L.map('maptl')
+        mymap.setView([57, -5], 6);
+        // add background layer
+        var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+        mymap.addLayer(backgroundLayer);
+        
+        // add map object to mapdiv
+        var mymap = L.map('maptr')
+        mymap.setView([57, -5], 6);
+        // add background layer
+        var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+        mymap.addLayer(backgroundLayer);
+        
+        // add map object to mapdiv
+        var mymap = L.map('mapbl')
+        mymap.setView([57, -5], 6);
+        // add background layer
+        var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+        mymap.addLayer(backgroundLayer);
+        
+        // add map object to mapdiv
+        var mymap = L.map('mapbr')
+        mymap.setView([57, -5], 6);
+        // add background layer
+        var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+        mymap.addLayer(backgroundLayer);
+    </script>
+</body>
+</html>

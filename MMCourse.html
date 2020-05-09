@@ -5,16 +5,8 @@
     <meta charset="UTF-8">
     <title>MillerMapsTutorial</title>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
-    <link rel="stylesheet" href="resources/local.css">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
-    <script src="resources/leaflet.ajax.min.js"></script>
-    <script src='https://unpkg.com/@turf/turf/turf.min.js'></script>
+    <script language="javascript" type="text/javascript" src="resources/cssImport.txt"></script>
+    <script language="javascript" type="text/javascript" src="resources/jsImport.txt"></script>
 
 </head>
 
@@ -26,9 +18,7 @@
         <button id="btnBuffer" class="form-control btn-warning attraction">Buffer</button>
     </div>
     <div id="mapdiv" class="col-md-9"></div>
-    <div id="footer" class="col-md-12">
-        <p class="text-center">&copy;2016 <a href="http://millermountain.com">Miller Mountain LLC</a></p>
-    </div>
+    <script language="javascript" type="text/javascript" src="resources/footer.txt"></script>
     <script>
         // add map object to mapdiv
         var mymap = L.map('mapdiv');
@@ -76,28 +66,8 @@
             var str = "Latitude: "+e.latlng.lat.toFixed(5)+" Longitude: "+e.latlng.lng.toFixed(5)+" Zoom Level: "+mymap.getZoom();
             $("#map_coords").html(str);
         });
-        
-        L.Control.Watermark = L.Control.extend({
-            onAdd: function(map) {
-                var img = L.DomUtil.create('img');
-
-                img.src = 'img/partner_logos.png';
-                img.style.width = '300px';
-
-                return img;
-            },
-
-            onRemove: function(map) {
-                // Nothing to do here
-                }
-            });
-
-            L.control.watermark = function(opts) {
-                return new L.Control.Watermark(opts);
-            }
-
-            L.control.watermark({ position: 'bottomleft' }).addTo(mymap);
     </script>
+    <script src="resources/watermark.js"></script>
 
 </body>
 

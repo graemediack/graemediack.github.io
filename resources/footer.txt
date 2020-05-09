@@ -1,0 +1,1 @@
+document.write('<div id="footer" class="col-md-12"><p class="text-left">Thanks to <a href="http://millermountain.com" target="_blank">Miller Mountain LLC</a> for GIS and Web courses!</p><p id="map_coords" class="text-right">Latitude: 57.0 Longitude: -5.0 Zoom: 6</p></div>')
