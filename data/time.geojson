@@ -1,0 +1,55 @@
+{
+"type": "FeatureCollection",
+"name": "ObservationInstrumentLocations",
+"crs": { 
+    "type": "name", 
+    "properties": { 
+        "name": "urn:ogc:def:crs:OGC:1.3:CRS84" 
+        } 
+    },
+"features": [{
+    "type": "Feature", 
+    "properties": { 
+        "coordTimes":  "2020-01-01", 
+        "Category": "Met Stations", 
+        "Site": "Ballypatrick", 
+        "Latitude": 55.181, 
+        "Longitude": -6.153 
+        }, 
+    "geometry": { 
+        "type": "Point", 
+        "coordinates": [ -6.153, 55.181 ] 
+        } 
+    },
+    
+    { 
+    "type": "Feature", 
+    "properties": { 
+        "coordTimes":  "2020-01-02", 
+        "Category": "Met Stations", 
+        "Site": "Dunstaffnage", 
+        "Latitude": 56.451, 
+        "Longitude": -5.439 
+        }, 
+    "geometry": { 
+        "type": "Point", 
+        "coordinates": [ -5.439, 56.451 ] 
+        } 
+    },
+    
+    { 
+    "type": "Feature", 
+    "properties": { 
+        "coordTimes":  "2020-01-03", 
+        "Category": "Met Stations", 
+        "Site": "Tiree", 
+        "Latitude": 56.5, 
+        "Longitude": -6.88 
+        }, 
+    "geometry": { 
+        "type": "Point", 
+        "coordinates": [ -6.88, 56.5 ] 
+        } 
+    },
+    ]
+}
