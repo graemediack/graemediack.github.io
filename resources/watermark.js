@@ -2,8 +2,8 @@ L.Control.Watermark = L.Control.extend({
     onAdd: function(map) {
     var img = L.DomUtil.create('img');
 
-    img.src = 'img/partner_logos.png';
-    img.style.width = '300px';
+    img.src = 'img/lazygrae_logo.png';
+    img.style.width = '600px';
 
     return img;
     },
