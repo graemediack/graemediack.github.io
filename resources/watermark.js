@@ -3,7 +3,7 @@ L.Control.Watermark = L.Control.extend({
     var img = L.DomUtil.create('img');
 
     img.src = 'img/lazygrae_logo.png';
-    img.style.width = '600px';
+    img.style.width = '300px';
 
     return img;
     },
