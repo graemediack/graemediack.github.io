@@ -21,32 +21,34 @@
     <script language="javascript" type="text/javascript" src="resources/footer.txt"></script>
     <script>
         // add map object to mapdiv
-        var mymap = L.map('maptl')
-        mymap.setView([57, -5], 6);
+        var maptl = L.map('maptl')
+        maptl.setView([57, -5], 3);
         // add background layer
         var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
-        mymap.addLayer(backgroundLayer);
+        maptl.addLayer(backgroundLayer);
         
         // add map object to mapdiv
-        var mymap = L.map('maptr')
-        mymap.setView([57, -5], 6);
+        var maptr = L.map('maptr')
+        maptr.setView([57, -5], 3);
         // add background layer
         var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
-        mymap.addLayer(backgroundLayer);
+        maptr.addLayer(backgroundLayer);
         
         // add map object to mapdiv
-        var mymap = L.map('mapbl')
-        mymap.setView([57, -5], 6);
+        var mapbl = L.map('mapbl')
+        mapbl.setView([57, -5], 3);
         // add background layer
         var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
-        mymap.addLayer(backgroundLayer);
+        mapbl.addLayer(backgroundLayer);
         
         // add map object to mapdiv
-        var mymap = L.map('mapbr')
-        mymap.setView([57, -5], 6);
+        var mapbr = L.map('mapbr')
+        mapbr.setView([57, -5], 3);
         // add background layer
         var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
-        mymap.addLayer(backgroundLayer);
+        mapbr.addLayer(backgroundLayer);
     </script>
+    <script src="resources/js/mouseposition.js"></script>
+    <script>L.control.mousePosition().addTo(maptl);</script>
 </body>
 </html>
