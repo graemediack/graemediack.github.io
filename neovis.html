@@ -21,11 +21,12 @@
         var viz;
 
         function draw() {
+            var user_password = prompt("What is your neo4j password?");
             var config = {
                 container_id: "viz",
-                server_url: "bolt://172.17.0.3:7687",
+                server_url: "bolt://localhost:7687",
                 server_user: "neo4j",
-                server_password: "dummypassword",
+                server_password: user_password,
                 labels: {
                     "Character": {
                         "caption": "name",
