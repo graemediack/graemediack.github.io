@@ -44,7 +44,7 @@
                         "caption": false
                     }
                 },
-                initial_cypher: "MATCH (n)-[r:INTERACTS]->(m) RETURN *"
+                initial_cypher: "MATCH (n) RETURN n LIMIT 10;"
             };
 
             viz = new NeoVis.default(config);
