@@ -10,18 +10,19 @@
     <body>
         <script language="javascript" type="text/javascript" src="resources/header.txt"></script>
         <div id="side_panel" class="col-md-3">
-            <p class="text-left">Marine Scotland Science Observation Locations</p>
+            <p class="text-left">Random Points in Central Scotland</p>
             <button id="btnBuffer" class="form-control btn btn-warning attraction">Buffer</button>
             <button id="btnVoronoi" class="form-control btn btn-warning attraction">Voronoi</button>
             <button id="btnTin" class="form-control btn btn-warning attraction">Tin</button>
             
-            <select id="selectMSSObsCat" class="custom-select attraction">
+            <select id="selectPointsCat" class="custom-select attraction">
                 <option selected>Select a Location Category:</option>
-                <option value="Coastal Observatory Sites">Coastal Observatory Sites</option>
-                <option value="West Coast Rivers">West Coast Rivers</option>
-                <option value="East Coast Rivers">East Coast Rivers</option>
-                <option value="Scottish Sea Areas">Scottish Sea Areas</option>
-                <option value="Met Stations">Met Stations</option>
+                <option value="Random Points A">Random Points A</option>
+                <option value="Random Points B">Random Points B</option>
+                <option value="Random Points C">Random Points C</option>
+                <option value="Random Points D">Random Points D</option>
+                <option value="Random Points E">Random Points E</option>
+                <option value="Random Points F">Random Points F</option>
             </select>
             
         </div>
@@ -34,8 +35,8 @@
             // add background layer
             var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
             mymap.addLayer(backgroundLayer);
-            // add all observation locations as little orange dots
-            var MSS_ObsLocLayerMarkerOptions = {
+            // add all locations as little orange dots
+            var Points_LocLayerMarkerOptions = {
                 radius: 3,
                 fillColor: "#ff7800",
                 color: "#000",
@@ -44,8 +45,8 @@
                 fillOpacity: 0.8
             };
 
-            var MSS_ObsLocLayer = new L.GeoJSON.AJAX('data/MSS_ObsLocations.geojson', {pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng, MSS_ObsLocLayerMarkerOptions);
+            var Points_LocLayer = new L.GeoJSON.AJAX('data/central.geojson', {pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, Points_LocLayerMarkerOptions);
                 }
             }).addTo(mymap);
             
@@ -54,7 +55,7 @@
             $("#btnBuffer").click(function(){
                 
                 if ($("#btnBuffer").html()=='Buffer') {
-                    var bufferedLocations = turf.buffer(MSS_ObsLocLayer.toGeoJSON(), 15, {units:'kilometres'});
+                    var bufferedLocations = turf.buffer(Points_LocLayer.toGeoJSON(), 15, {units:'kilometres'});
                     bufferLayer = L.geoJSON(bufferedLocations).addTo(mymap);
                     $("#btnBuffer").html("Remove Buffer");
                 } else {
@@ -67,7 +68,7 @@
             $("#btnVoronoi").click(function(){
                 
                 if ($("#btnVoronoi").html()=='Voronoi') {
-                    var voronoiLocations = turf.voronoi(MSS_ObsLocLayer.toGeoJSON());
+                    var voronoiLocations = turf.voronoi(Points_LocLayer.toGeoJSON());
                     voronoiLayer = L.geoJSON(voronoiLocations).addTo(mymap);
                     $("#btnVoronoi").html("Remove Voronoi");
                 } else {
@@ -80,7 +81,7 @@
             $("#btnTin").click(function(){
                 
                 if ($("#btnTin").html()=='Tin') {
-                    var tinLocations = turf.tin(MSS_ObsLocLayer.toGeoJSON());
+                    var tinLocations = turf.tin(Points_LocLayer.toGeoJSON());
                     tinLayer = L.geoJSON(tinLocations).addTo(mymap);
                     $("#btnTin").html("Remove Tin");
                 } else {
@@ -92,13 +93,13 @@
             
             // highlight particular categories using drop down and view button
             var categorySelect = L.geoJSON();
-            $("#selectMSSObsCat").click(function(){
+            $("#selectPointsCat").click(function(){
                 mymap.removeLayer(categorySelect);
-                categorySelect = new L.GeoJSON.AJAX('data/MSS_ObsLocations.geojson', {filter: locationCatFilter}).addTo(mymap);
+                categorySelect = new L.GeoJSON.AJAX('data/central.geojson', {filter: locationCatFilter}).addTo(mymap);
             });
             
             function locationCatFilter(feature) {
-                if (feature.properties.Category == $("#selectMSSObsCat").val()) {
+                if (feature.properties.Category == $("#selectPointsCat").val()) {
                     return true;
                 } 
             };

@@ -8,10 +8,10 @@
 </head>
 <body>
     <script language="javascript" type="text/javascript" src="resources/header.txt"></script>
-    <div id="mainmap" class="col-md-12 well"></div>
+    <div id="main_panel" class="col-md-12 well"></div>
     <script>
         // add map object to mapdiv
-        var mainmap = L.map('mainmap')
+        var mainmap = L.map('main_panel')
         mainmap.setView([57, -20], 3);
         // add background layer
         var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');

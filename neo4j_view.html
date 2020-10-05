@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View and Manipulate Remote NEO4J Graph DB</title>
+    <script language="javascript" type="text/javascript" src="resources/cssImport.txt"></script>
+    <script language="javascript" type="text/javascript" src="resources/jsImport.txt"></script>
+</head>
+<body>
+    <script language="javascript" type="text/javascript" src="resources/header.txt"></script>
+    <div id="side_panel" class="col-md-2">
+    Cypher query: <textarea rows="6" cols=25 id="cypher"></textarea><br>
+        <input type="submit" value="Submit" id="reload">
+        <input type="submit" value="Stabilize" id="stabilize">
+        <script>
+            $("#reload").click(function() {
+
+                var cypher = $("#cypher").val();
+
+                if (cypher.length > 3) {
+                    viz.renderWithCypher(cypher);
+                } else {
+                    console.log("reload");
+                    viz.reload();
+
+                }
+
+            });
+
+            $("#stabilize").click(function() {
+                viz.stabilize();
+            })
+
+        </script>  
+    </div>
+    <div id="main_panel" class="col-md-10">
+        <script src="resources/js/neovisconnection.js"></script>
+    </div>
+</body>
+</html>
